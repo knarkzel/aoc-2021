@@ -1,6 +1,3 @@
-module main
-
-import strconv { atoi }
 import os
 
 fn main() {
@@ -12,7 +9,7 @@ fn main() {
 fn part1(input [][]string) int {
 	mut depth, mut horizontal := 0, 0
 	for line in input {
-		value := atoi(line[1]) or { continue }
+		value := line[1].int()
 		match line[0] {
 			'up' { depth -= value }
 			'down' { depth += value }
@@ -25,7 +22,7 @@ fn part1(input [][]string) int {
 fn part2(input [][]string) int {
 	mut depth, mut horizontal, mut aim := 0, 0, 0
 	for line in input {
-		value := atoi(line[1]) or { continue }
+		value := line[1].int()
 		match line[0] {
 			'up' {
 				aim -= value
