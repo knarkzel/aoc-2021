@@ -1,2 +1,2 @@
-day*/day*
+day\d/day\d^
 vls.log
