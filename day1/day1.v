@@ -1,11 +1,12 @@
 import os
-import arrays { sum, window }
+import arrays { window }
+
+fn fold(input []int) ?int {
+	return arrays.sum(window(input, size: 2).map(int(it[1] - it[0] > 0)))
+}
 
 fn main() {
 	input := os.read_lines('input.txt') ?.map(it.int())
-	part1 := sum(window(input, size: 2).map(int(it[1] - it[0] > 0))) ?
-	println('Part 1: $part1')
-	windows := window(input, size: 3).map(sum(it) ?)
-	part2 := sum(window(windows, size: 2).map(int(it[1] - it[0] > 0))) ?
-	println('Part 2: $part2')
+	println('Part 1: ${fold(input)}')
+	println('Part 2: ${fold(window(input, size: 3).map(fold(it) ?))}')
 }

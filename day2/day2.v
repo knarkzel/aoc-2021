@@ -1,7 +1,7 @@
 module main
 
-import os
 import strconv { atoi }
+import os
 
 fn main() {
 	input := os.read_lines('input.txt') ?.map(it.split(' '))
