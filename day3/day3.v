@@ -39,20 +39,17 @@ fn part1(bytes []string) int {
 	return gamma_rate * epsilon_rate
 }
 
-fn part2(bytes []string) string {
-	mut rest := bytes.clone()
-	for rest.len > 1 {
-		bitmap := get_bitmap(rest)
-		for i, bit in bitmap {
-			// amount with 1 in pos
-			ones := rest.map(it[i] == `1`).len
-			zeros := rest.map(it[i] == `0`).len
-			if ones == zeros {
-				// oxygen generator rating
-			} else {
-				rest = rest.filter(it[i] == if bit { `1` } else { `0` })
-			}
-		}
+fn part2(bytes []string) []string {
+	return oxygen_rating(bytes)
+}
+
+fn oxygen_rating(bytes []string) []string {
+	mut bit := 0
+	mut valid := bytes.clone()
+	for valid.len > 2 {
+		bitmap := get_bitmap(valid)
+		valid = valid.filter(it[bit] == if bitmap[bit] { `1` } else { `0` })
+		bit += 1
 	}
-	return rest[0]
+	return valid
 }
