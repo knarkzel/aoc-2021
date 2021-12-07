@@ -6,7 +6,7 @@ struct Board {
 }
 
 fn parse_boards(input []string) []Board {
-	numbers := input.map(it.replace('\n', ' ').split(' ').filter(it.len > 0).map(it.int()))
+	numbers := input.map(it.split_any(' \n').filter(it.len > 0).map(it.int()))
 	return numbers.map(Board{arrays.chunk(it, 5)})
 }
 
